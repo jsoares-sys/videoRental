@@ -12,10 +12,12 @@ public class Movie {
         setPriceCode(priceCode);
     }
 
+    // Agora delega completamente ao objeto Price
     public int getPriceCode() {
         return price.getPriceCode();
     }
 
+    // Elimina duplicação — apenas muda o tipo de Price
     public void setPriceCode(int priceCode) {
         switch (priceCode) {
             case REGULAR:
@@ -28,7 +30,7 @@ public class Movie {
                 price = new ChildrensPrice();
                 break;
             default:
-                throw new IllegalArgumentException("Código inválido");
+                throw new IllegalArgumentException("Código de preço inválido");
         }
     }
 
