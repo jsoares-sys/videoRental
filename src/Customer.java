@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,8 @@ public class Customer {
         return name;
     }
 
-    public String statement() {
+    // RENOMEADO NO COMMIT 16
+    public String textStatement() {
         StringBuilder result = new StringBuilder("Rental Record for " + getName() + "\n");
 
         for (Rental rental : rentals) {
@@ -35,6 +35,8 @@ public class Customer {
 
         return result.toString();
     }
+
+    // ---------- Métodos auxiliares permanecem iguais ----------
 
     private double getTotalCharge() {
         double result = 0;
