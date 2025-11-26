@@ -1,4 +1,3 @@
-
 public class TextStatement extends Statement {
 
     @Override
@@ -14,8 +13,8 @@ public class TextStatement extends Statement {
 
     @Override
     protected String footer(Customer customer) {
-        return "Amount owed is " + customer.getTotalCharge() + "\n" +
-                "You earned " + customer.getTotalFrequentRenterPoints() +
+        return "Amount owed is " + getTotalCharge(customer) + "\n" +
+                "You earned " + getTotalFrequentRenterPoints(customer) +
                 " frequent renter points";
     }
 }

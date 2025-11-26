@@ -1,4 +1,3 @@
-
 public class HtmlStatement extends Statement {
 
     @Override
@@ -14,8 +13,8 @@ public class HtmlStatement extends Statement {
 
     @Override
     protected String footer(Customer customer) {
-        return "<p>Amount owed is <b>" + customer.getTotalCharge() + "</b></p>" +
-                "<p>You earned <b>" + customer.getTotalFrequentRenterPoints() +
+        return "<p>Amount owed is <b>" + getTotalCharge(customer) + "</b></p>" +
+                "<p>You earned <b>" + getTotalFrequentRenterPoints(customer) +
                 "</b> frequent renter points</p>";
     }
 }
