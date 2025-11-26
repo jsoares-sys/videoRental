@@ -19,16 +19,16 @@ public class Movie {
     public void setPriceCode(int priceCode) {
         switch (priceCode) {
             case REGULAR:
-                this.price = new RegularPrice();
+                price = new RegularPrice();
                 break;
             case NEW_RELEASE:
-                this.price = new NewReleasePrice();
+                price = new NewReleasePrice();
                 break;
             case CHILDRENS:
-                this.price = new ChildrensPrice();
+                price = new ChildrensPrice();
                 break;
             default:
-                throw new IllegalArgumentException("Código de preço inválido");
+                throw new IllegalArgumentException("Código inválido");
         }
     }
 
@@ -36,7 +36,6 @@ public class Movie {
         return title;
     }
 
-    // ---- agora delega para Price ----
     public double getCharge(int daysRented) {
         return price.getCharge(daysRented);
     }

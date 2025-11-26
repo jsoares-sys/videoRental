@@ -10,7 +10,6 @@ public class NewReleasePrice extends Price {
         return daysRented * 3;
     }
 
-    // novo comportamento
     @Override
     public int getFrequentRenterPoints(int daysRented) {
         return (daysRented > 1) ? 2 : 1;
