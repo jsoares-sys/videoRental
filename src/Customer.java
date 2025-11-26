@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,72 +11,75 @@ public class Customer {
         this.name = name;
     }
 
-    public void addRental(Rental arg) {
-        rentals.add(arg);
+    public void addRental(Rental rental) {
+        rentals.add(rental);
     }
 
     public String getName() {
         return name;
     }
 
+    // ============================
+    //   MÉTODO ORIGINAL (TEXTO)
+    // ============================
     public String statement() {
-
         StringBuilder result = new StringBuilder("Rental Record for " + getName() + "\n");
 
-        for (Rental each : rentals) {
+        for (Rental rental : rentals) {
             result.append("\t")
-                    .append(each.getMovie().getTitle())
+                    .append(rental.getMovie().getTitle())
                     .append("\t")
-                    .append(each.getCharge())
+                    .append(rental.getCharge())
                     .append("\n");
         }
 
-        result.append("Amount owed is ")
-                .append(getTotalCharge())
-                .append("\n");
-
-        result.append("You earned ")
-                .append(getTotalFrequentRenterPoints())
+        result.append("Amount owed is ").append(getTotalCharge()).append("\n");
+        result.append("You earned ").append(getTotalFrequentRenterPoints())
                 .append(" frequent renter points");
 
         return result.toString();
     }
 
-    // 👉 NOVO NO COMMIT 7
+    // ============================
+    //   NOVO MÉTODO (HTML)
+    // ============================
     public String htmlStatement() {
+        StringBuilder result = new StringBuilder("<h1>Rental Record for <b>" + getName() + "</b></h1><br>");
 
-        StringBuilder result = new StringBuilder("<h1>Rental Record for <em>" + getName() + "</em></h1><p>\n");
-
-        for (Rental each : rentals) {
-            result.append(each.getMovie().getTitle())
+        for (Rental rental : rentals) {
+            result.append(rental.getMovie().getTitle())
                     .append(": ")
-                    .append(each.getCharge())
-                    .append("<br>\n");
+                    .append(rental.getCharge())
+                    .append("<br>");
         }
 
-        result.append("<p>You owe <em>")
+        result.append("<p>Amount owed is <b>")
                 .append(getTotalCharge())
-                .append("</em></p>\n");
+                .append("</b></p>");
 
-        result.append("<p>On this rental you earned <em>")
+        result.append("<p>You earned <b>")
                 .append(getTotalFrequentRenterPoints())
-                .append("</em> frequent renter points</p>");
+                .append("</b> frequent renter points</p>");
 
         return result.toString();
     }
 
+    // ============================
+    //   MÉTODOS AUXILIARES
+    // ============================
+
     private double getTotalCharge() {
         double total = 0;
-        for (Rental each : rentals) {
-            total += each.getCharge();
+        for (Rental rental : rentals) {
+            total += rental.getCharge();
         }
         return total;
     }
 
     private int getTotalFrequentRenterPoints() {
         int points = 0;
-        for (Rental each : rentals) {
-            points += each.getFrequentRenterPoints();
+        for (Rental rental : rentals) {
+            points += rental.getFrequentRenterPoints();
         }
         return points;
     }
