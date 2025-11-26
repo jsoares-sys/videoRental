@@ -29,21 +29,4 @@ public class Customer {
     public String htmlStatement() {
         return new HtmlStatement().value(this);
     }
-
-    // Métodos auxiliares ainda são usados no Statement
-    public double getTotalCharge() {
-        double total = 0;
-        for (Rental rental : rentals) {
-            total += rental.getCharge();
-        }
-        return total;
-    }
-
-    public int getTotalFrequentRenterPoints() {
-        int points = 0;
-        for (Rental rental : rentals) {
-            points += rental.getFrequentRenterPoints();
-        }
-        return points;
-    }
 }
