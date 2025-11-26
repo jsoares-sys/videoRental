@@ -1,40 +1,23 @@
+import Customer;
+import Rental;
+
 public abstract class Statement {
 
     public String value(Customer customer) {
-        StringBuilder result = new StringBuilder();
-
-        result.append(header(customer));
+        StringBuilder result = new StringBuilder(headerString(customer));
 
         for (Rental rental : customer.getRentals()) {
-            result.append(eachRental(rental));
+            result.append(eachRentalString(rental));
         }
 
-        result.append(footer(customer));
+        result.append(footerString(customer));
 
         return result.toString();
     }
 
-    protected abstract String header(Customer customer);
-    protected abstract String eachRental(Rental rental);
-    protected abstract String footer(Customer customer);
+    protected abstract String headerString(Customer customer);
 
-    // ============================
-    //   NOVOS MÉTODOS DO COMMIT 11
-    // ============================
+    protected abstract String eachRentalString(Rental rental);
 
-    protected double getTotalCharge(Customer customer) {
-        double total = 0;
-        for (Rental rental : customer.getRentals()) {
-            total += rental.getCharge();
-        }
-        return total;
-    }
-
-    protected int getTotalFrequentRenterPoints(Customer customer) {
-        int points = 0;
-        for (Rental rental : customer.getRentals()) {
-            points += rental.getFrequentRenterPoints();
-        }
-        return points;
-    }
+    protected abstract String footerString(Customer customer);
 }

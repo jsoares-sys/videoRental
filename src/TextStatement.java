@@ -1,19 +1,21 @@
-public class TextStatement {
+import Customer;
+import Rental;
 
-    public String value(Customer customer) {
-        StringBuilder result = new StringBuilder("Rental Record for " + customer.getName() + "\n");
+public class TextStatement extends Statement {
 
-        for (Rental rental : customer.getRentals()) {
-            result.append("\t")
-                    .append(rental.getMovie().getTitle())
-                    .append("\t")
-                    .append(rental.getCharge())
-                    .append("\n");
-        }
+    @Override
+    protected String headerString(Customer customer) {
+        return "Rental Record for " + customer.getName() + "\n";
+    }
 
-        result.append("Amount owed is ").append(customer.getTotalCharge()).append("\n");
-        result.append("You earned ").append(customer.getTotalFrequentRenterPoints()).append(" frequent renter points");
+    @Override
+    protected String eachRentalString(Rental rental) {
+        return "\t" + rental.getMovie().getTitle() + "\t" + rental.getCharge() + "\n";
+    }
 
-        return result.toString();
+    @Override
+    protected String footerString(Customer customer) {
+        return "Amount owed is " + customer.getTotalCharge() + "\n"
+                + "You earned " + customer.getTotalFrequentRenterPoints() + " frequent renter points";
     }
 }
