@@ -3,79 +3,58 @@ import java.util.List;
 
 public class Customer {
 
-
     private String name;
     private List<Rental> rentals = new ArrayList<>();
-
 
     public Customer(String name) {
         this.name = name;
     }
 
-
-    public void addRental(Rental rental) {
-        rentals.add(rental);
+    public void addRental(Rental arg) {
+        rentals.add(arg);
     }
-
 
     public String getName() {
         return name;
     }
 
-
-    // ===========================
-// MÉTODO EXTRAÍDO (amountFor)
-// ===========================
-    private double amountFor(Rental rental) {
-        return rental.getCharge();
-    }
-
-
-    // ===========================
-// CÁLCULO DE PONTOS
-// ===========================
-    private int frequentRenterPointsFor(Rental rental) {
-        if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE && rental.getDaysRented() > 1)
-            return 2;
-        return 1;
-    }
-
-
-    // ===========================
-// STATEMENT REFACTORED
-// ===========================
+    // ---- REFACTORED NO COMMIT 5 ----
     public String statement() {
+
         StringBuilder result = new StringBuilder("Rental Record for " + getName() + "\n");
 
-
-        for (Rental rental : rentals) {
-// adiciona linha do aluguel
-            result.append("\t" + rental.getMovie().getTitle() + "\t" + rental.getCharge() + "\n");
+        for (Rental each : rentals) {
+            result.append("\t")
+                    .append(each.getMovie().getTitle())
+                    .append("\t")
+                    .append(each.getCharge())
+                    .append("\n");
         }
 
+        result.append("Amount owed is ")
+                .append(getTotalCharge())
+                .append("\n");
 
-// rodapé
-        result.append("Amount owed is " + getTotalCharge() + "\n");
-        result.append("You earned " + getTotalFrequentRenterPoints() + " frequent renter points");
-
+        result.append("You earned ")
+                .append(getTotalFrequentRenterPoints())
+                .append(" frequent renter points");
 
         return result.toString();
     }
 
-
-    // SOMA TOTAL REFACTORED
     private double getTotalCharge() {
         double total = 0;
-        for (Rental rental : rentals)
-            total += rental.getCharge();
+        for (Rental each : rentals) {
+            total += each.getCharge();
+        }
         return total;
     }
 
-
     private int getTotalFrequentRenterPoints() {
-        int total = 0;
-        for (Rental rental : rentals)
-            total += frequentRenterPointsFor(rental);
-        return total;
+        int points = 0;
+        for (Rental each : rentals) {
+            points += each.getFrequentRenterPoints();
+        }
+        return points;
     }
 }
