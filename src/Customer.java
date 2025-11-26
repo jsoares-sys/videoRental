@@ -1,3 +1,4 @@
+import TextStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,6 +6,7 @@ public class Customer {
 
     private String name;
     private List<Rental> rentals = new ArrayList<>();
+    private TextStatement textStatement = new TextStatement(); // NOVO
 
     public Customer(String name) {
         this.name = name;
@@ -18,27 +20,17 @@ public class Customer {
         return name;
     }
 
-    // RENOMEADO NO COMMIT 16
-    public String textStatement() {
-        StringBuilder result = new StringBuilder("Rental Record for " + getName() + "\n");
-
-        for (Rental rental : rentals) {
-            result.append("\t")
-                    .append(rental.getMovie().getTitle())
-                    .append("\t")
-                    .append(rental.getCharge())
-                    .append("\n");
-        }
-
-        result.append("Amount owed is ").append(getTotalCharge()).append("\n");
-        result.append("You earned ").append(getTotalFrequentRenterPoints()).append(" frequent renter points");
-
-        return result.toString();
+    public List<Rental> getRentals() {
+        return rentals;
     }
 
-    // ---------- Métodos auxiliares permanecem iguais ----------
+    // EXTRAÍDO NO COMMIT 17
+    public String textStatement() {
+        return textStatement.value(this);
+    }
 
-    private double getTotalCharge() {
+    
+    public double getTotalCharge() {
         double result = 0;
         for (Rental rental : rentals) {
             result += rental.getCharge();
@@ -46,7 +38,7 @@ public class Customer {
         return result;
     }
 
-    private int getTotalFrequentRenterPoints() {
+    public int getTotalFrequentRenterPoints() {
         int result = 0;
         for (Rental rental : rentals) {
             result += rental.getFrequentRenterPoints();
