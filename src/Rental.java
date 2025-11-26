@@ -1,3 +1,4 @@
+
 public class Rental {
 
     private Movie movie;
@@ -8,20 +9,20 @@ public class Rental {
         this.daysRented = daysRented;
     }
 
-    public int getDaysRented() {
-        return daysRented;
-    }
-
     public Movie getMovie() {
         return movie;
     }
 
-    public double getCharge() {
-        return movie.getPrice().getCharge(daysRented);
+    public int getDaysRented() {
+        return daysRented;
     }
 
-    // Commit 13 — delegação à Price
+    public double getCharge() {
+        return movie.calculateCharge(daysRented);
+    }
+
+    // ALTERADO NO COMMIT 15
     public int getFrequentRenterPoints() {
-        return movie.getPrice().getFrequentRenterPoints(daysRented);
+        return movie.getFrequentRenterPoints(daysRented);
     }
 }

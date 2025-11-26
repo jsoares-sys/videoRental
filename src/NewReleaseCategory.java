@@ -5,6 +5,7 @@ public class NewReleaseCategory extends MovieCategory {
         return daysRented * 3;
     }
 
+    // ALTERAÇÃO DO COMMIT 15
     @Override
     public int getFrequentRenterPoints(int daysRented) {
         return (daysRented > 1) ? 2 : 1;

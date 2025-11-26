@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,15 +19,36 @@ public class Customer {
         return name;
     }
 
-    public List<Rental> getRentals() {
-        return rentals;
-    }
-
     public String statement() {
-        return new TextStatement().value(this);
+        StringBuilder result = new StringBuilder("Rental Record for " + getName() + "\n");
+
+        for (Rental rental : rentals) {
+            result.append("\t")
+                    .append(rental.getMovie().getTitle())
+                    .append("\t")
+                    .append(rental.getCharge())
+                    .append("\n");
+        }
+
+        result.append("Amount owed is ").append(getTotalCharge()).append("\n");
+        result.append("You earned ").append(getTotalFrequentRenterPoints()).append(" frequent renter points");
+
+        return result.toString();
     }
 
-    public String htmlStatement() {
-        return new HtmlStatement().value(this);
+    private double getTotalCharge() {
+        double result = 0;
+        for (Rental rental : rentals) {
+            result += rental.getCharge();
+        }
+        return result;
+    }
+
+    private int getTotalFrequentRenterPoints() {
+        int result = 0;
+        for (Rental rental : rentals) {
+            result += rental.getFrequentRenterPoints();
+        }
+        return result;
     }
 }

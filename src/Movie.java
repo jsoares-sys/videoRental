@@ -1,3 +1,4 @@
+
 public class Movie {
 
     private String title;
@@ -16,6 +17,7 @@ public class Movie {
         return category.calculateCharge(daysRented);
     }
 
+    // NOVO NO COMMIT 15
     public int getFrequentRenterPoints(int daysRented) {
         return category.getFrequentRenterPoints(daysRented);
     }
