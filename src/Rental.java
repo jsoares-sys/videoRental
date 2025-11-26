@@ -16,12 +16,10 @@ public class Rental {
         return daysRented;
     }
 
-    // ---- NOVO NO COMMIT 5 ----
     public double getCharge() {
         return movie.getCharge(daysRented);
     }
 
-    // ---- NOVO NO COMMIT 5 ----
     public int getFrequentRenterPoints() {
         return movie.getFrequentRenterPoints(daysRented);
     }

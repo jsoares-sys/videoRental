@@ -18,7 +18,6 @@ public class Customer {
         return name;
     }
 
-    // ---- REFACTORED NO COMMIT 5 ----
     public String statement() {
 
         StringBuilder result = new StringBuilder("Rental Record for " + getName() + "\n");
