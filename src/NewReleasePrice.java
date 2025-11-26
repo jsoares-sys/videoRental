@@ -10,6 +10,7 @@ public class NewReleasePrice extends Price {
         return daysRented * 3;
     }
 
+    // Commit 13 — sobrescrita do método novo
     @Override
     public int getFrequentRenterPoints(int daysRented) {
         return (daysRented > 1) ? 2 : 1;

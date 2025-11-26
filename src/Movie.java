@@ -12,37 +12,31 @@ public class Movie {
         setPriceCode(priceCode);
     }
 
-    // Agora delega completamente ao objeto Price
-    public int getPriceCode() {
-        return price.getPriceCode();
+    public String getTitle() {
+        return title;
     }
 
-    // Elimina duplicação — apenas muda o tipo de Price
     public void setPriceCode(int priceCode) {
         switch (priceCode) {
             case REGULAR:
                 price = new RegularPrice();
                 break;
-            case NEW_RELEASE:
-                price = new NewReleasePrice();
-                break;
             case CHILDRENS:
                 price = new ChildrensPrice();
                 break;
+            case NEW_RELEASE:
+                price = new NewReleasePrice();
+                break;
             default:
-                throw new IllegalArgumentException("Código de preço inválido");
+                throw new IllegalArgumentException("Invalid price code");
         }
     }
 
-    public String getTitle() {
-        return title;
+    public int getPriceCode() {
+        return price.getPriceCode();
     }
 
-    public double getCharge(int daysRented) {
-        return price.getCharge(daysRented);
-    }
-
-    public int getFrequentRenterPoints(int daysRented) {
-        return price.getFrequentRenterPoints(daysRented);
+    public Price getPrice() {
+        return price;
     }
 }
